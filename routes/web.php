@@ -11,14 +11,17 @@
 |
 */
 
+use App\Services\Contracts\CarSharing;
+use App\Services\Contracts\RandomGenerator;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cars', function () {
-
+Route::get('/cars', function (CarSharing $car) {
+    return $car->getAllCars();
 });
 
-Route::get('/cars/random', function () {
-
+Route::get('/cars/random', function (RandomGenerator $random) {
+    return $random->getRandomInt(1,5);
 });

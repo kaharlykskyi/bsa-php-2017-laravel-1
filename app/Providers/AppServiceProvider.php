@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider,
+    App\Services\Contracts;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Services\Contracts\RandomGenerator','App\Services\RandomGeneratorService');
+        $this->app->bind('App\Services\Contracts\CarSharing','App\Services\CarSharingService');
     }
 }
