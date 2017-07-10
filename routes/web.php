@@ -12,16 +12,20 @@
 */
 
 use App\Services\Contracts\CarSharing;
-use App\Services\Contracts\RandomGenerator;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/cars', function (CarSharing $car) {
-    return $car->getAllCars();
+    return json_encode($car->getAllCars());
 });
 
-Route::get('/cars/random', function (RandomGenerator $random) {
-    return $random->getRandomInt(1,5);
+Route::get('/cars/random', function (CarSharing $car) {
+    $data =  $car->getRandomCar();
+    return Response::view('car', [
+        'model' => $data['model'],
+        'image' => $data['image']
+    ]);
 });
