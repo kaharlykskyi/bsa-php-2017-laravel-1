@@ -23,7 +23,8 @@ class CarSharingService implements CarSharing
     }
     public function getRandomCar()
     {
-        $randomNumber = $this->randomGenerator->getRandomInt(0, count($this->getAllCars()) - 1);
-        return $this->getAllCars()[$randomNumber];
+        $allCars = $this->getAllCars();
+        $randomNumber = $this->randomGenerator->getRandomInt(0, count($allCars) - 1);
+        return $allCars()[$randomNumber];
     }
 }
